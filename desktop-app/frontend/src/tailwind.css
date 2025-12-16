@@ -1,0 +1,99 @@
+/* Tailwind CSS configuration - Thème Village Bidjanté */
+
+@import 'tailwindcss';
+
+/* Configuration personnalisée */
+@theme {
+  /* Palette Village Bidjanté */
+  --color-primary: oklch(0.7 0.15 70);      /* Orange terre / #d97706 */
+  --color-primary-dark: oklch(0.65 0.15 70); /* Orange terre foncé / #b45309 */
+  
+  /* Couleurs de base */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  
+  /* Couleurs supplémentaires */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  /* Couleurs de statut */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  
+  /* Tailles */
+  --sidebar-width-open: 20rem;
+  --sidebar-width-closed: 6rem;
+  
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+}
+
+@layer utilities {
+  /* Transitions */
+  .sidebar-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Effets spéciaux */
+  .village-shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .village-shadow-lg {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(248, 245, 240, 0.8);
+  }
+  
+  .dark .glass-effect {
+    background-color: rgba(26, 21, 14, 0.8);
+  }
+  
+  /* Textures subtiles */
+  .texture-paper {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0,0,0,0.02) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  
+  /* Gradients Village */
+  .gradient-village {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  }
+  
+  .gradient-earth {
+    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+  }
+  
+  .gradient-sand {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  }
+  
+  /* Animations */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out;
+  }
+}

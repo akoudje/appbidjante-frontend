@@ -1,0 +1,31 @@
+import axios from "axios";
+
+const API_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Inject token into headers
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("auth_token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+// Token handlers
+export const apiSetToken = (t) => localStorage.setItem("auth_token", t);
+export const apiClearToken = () => localStorage.removeItem("auth_token");
+
+// Helpers
+export const apiGet = (p) => api.get(p).then((res) => res.data);
+export const apiPost = (p, b) => api.post(p, b).then((res) => res.data);
+export const apiPut = (p, b) => api.put(p, b).then((res) => res.data);
+export const apiDelete = (p) => api.delete(p).then((res) => res.data);
+
+export default api;
+

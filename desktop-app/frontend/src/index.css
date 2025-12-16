@@ -1,0 +1,750 @@
+/* index.css - Thème Village Bidjanté */
+
+@import "tailwindcss";
+
+/* Variables CSS personnalisées pour Village Bidjanté */
+:root {
+  /* Palette principale inspirée du logo (couleurs terre/orange) */
+  --background: #fefaf3;
+  --foreground: #2c1810;
+  --card: #ffffff;
+  --card-foreground: #2c1810;
+  --primary: #d97706;        /* Orange terre du logo */
+  --primary-foreground: #ffffff;
+  --primary-dark: #b45309;   /* Orange foncé */
+  --border: #e7d8c8;
+  --input: #f5f1eb;
+  --ring: #d97706;
+  
+  /* Couleurs supplémentaires */
+  --secondary: #f5f1eb;
+  --secondary-foreground: #2c1810;
+  --accent: #92400e;
+  --accent-foreground: #ffffff;
+  --muted: #f8f5f0;
+  --muted-foreground: #7c6d60;
+  
+  /* Couleurs de statut */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+}
+
+.dark {
+  --background: #1a140e;
+  --foreground: #f8f5f0;
+  --card: #2a231b;
+  --card-foreground: #f8f5f0;
+  --primary: #f59e0b;
+  --primary-foreground: #1a140e;
+  --primary-dark: #d97706;
+  --border: #4a4035;
+  --input: #3a332a;
+  --ring: #f59e0b;
+  
+  --secondary: #3a332a;
+  --secondary-foreground: #f8f5f0;
+  --accent: #fbbf24;
+  --accent-foreground: #1a140e;
+  --muted: #3a332a;
+  --muted-foreground: #a89b8c;
+}
+
+/* Styles de base */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+}
+
+/* Classes utilitaires manuelles */
+.bg-background {
+  background-color: var(--background) !important;
+}
+
+.bg-card {
+  background-color: var(--card) !important;
+}
+
+.text-foreground {
+  color: var(--foreground) !important;
+}
+
+.text-card-foreground {
+  color: var(--card-foreground) !important;
+}
+
+.border-border {
+  border-color: var(--border) !important;
+}
+
+/* Composants simplifiés */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  transition: all 0.2s;
+}
+
+.sidebar-item:hover {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.sidebar-item.active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  opacity: 1;
+}
+
+/* Inputs */
+input, textarea, select {
+  pointer-events: auto !important;
+}
+
+input[type="text"], input[type="password"] {
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* Dropdown animations */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-enter {
+  animation: dropdownFadeIn 0.2s ease-out;
+}
+
+/* Avatar badge */
+.avatar-badge {
+  box-shadow: 0 0 0 2px var(--card);
+}
+
+/* Menu item hover effects */
+.menu-item-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item-hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.menu-item-hover:hover::after {
+  transform: translateX(0);
+}
+
+/* Styles pour les icônes plus grandes et sous-titres */
+.sidebar-item-large {
+  padding: 0.875rem 1rem;
+}
+
+.icon-xl {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.icon-2xl {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Ajustements pour les sous-titres */
+.subtitle-visible {
+  opacity: 1 !important;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+/* Tooltips améliorés pour grandes icônes */
+.tooltip-lg {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Ajustements responsive */
+@media (max-width: 768px) {
+  .sidebar-panel {
+    width: 100% !important;
+    max-width: 320px;
+  }
+  
+  .icon-xl {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* Fix pour l'espace et le scrolling */
+.h-screen-fixed {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.scrollbar-fix {
+  scrollbar-gutter: stable;
+}
+
+/* Empêcher le débordement horizontal */
+.no-horizontal-scroll {
+  overflow-x: hidden;
+}
+
+/* Fix spécifique pour le layout */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+.main-content-wrapper {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .main-content-wrapper {
+    margin-left: 6rem;
+  }
+  
+  .main-content-wrapper.sidebar-open {
+    margin-left: 20rem;
+  }
+}
+
+/* Styles utilitaires supplémentaires pour Village Bidjanté */
+@layer utilities {
+  /* Couleurs spécifiques au thème */
+  .bg-village-primary {
+    background-color: var(--primary);
+  }
+  
+  .text-village-primary {
+    color: var(--primary);
+  }
+  
+  .border-village-primary {
+    border-color: var(--primary);
+  }
+  
+  /* Transitions */
+  .sidebar-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Effets spéciaux */
+  .village-shadow {
+    box-shadow: 0 4px 20px rgba(217, 119, 6, 0.08), 0 1px 3px rgba(217, 119, 6, 0.05);
+  }
+  
+  .village-shadow-lg {
+    box-shadow: 0 10px 40px rgba(217, 119, 6, 0.1), 0 2px 6px rgba(217, 119, 6, 0.08);
+  }
+  
+  /* Effet glass amélioré pour le header */
+  .glass-effect-village {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: linear-gradient(
+      135deg,
+      rgba(254, 250, 243, 0.95) 0%,
+      rgba(254, 243, 232, 0.85) 50%,
+      rgba(255, 247, 237, 0.95) 100%
+    );
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+  
+  .dark .glass-effect-village {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 20, 14, 0.95) 0%,
+      rgba(42, 35, 27, 0.85) 50%,
+      rgba(28, 25, 23, 0.95) 100%
+    );
+    border: 1px solid rgba(180, 83, 9, 0.3);
+  }
+  
+  /* Effet texture pour le sidebar */
+  .texture-paper {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(217, 119, 6, 0.02) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(180, 83, 9, 0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  
+  .texture-terre {
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(217, 119, 6, 0.1) 0%, transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(180, 83, 9, 0.1) 0%, transparent 25%),
+      linear-gradient(to bottom, transparent 95%, rgba(120, 53, 15, 0.05) 100%);
+  }
+  
+  /* Ombre améliorée */
+  .shadow-elevated {
+    box-shadow: 
+      0 10px 40px rgba(217, 119, 6, 0.1),
+      0 2px 8px rgba(217, 119, 6, 0.08),
+      0 0 0 1px rgba(251, 191, 36, 0.1);
+  }
+  
+  .dark .shadow-elevated {
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(180, 83, 9, 0.2);
+  }
+  
+  /* Gradient Village */
+  .gradient-village {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  }
+  
+  .gradient-earth {
+    background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+  }
+  
+  .gradient-sand {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  }
+  
+  /* Background spécial pour sidebar */
+  .bg-sidebar-village {
+    background: linear-gradient(
+      to bottom,
+      rgba(254, 250, 243, 0.98) 0%,
+      rgba(254, 245, 231, 0.95) 20%,
+      rgba(255, 248, 239, 0.92) 100%
+    );
+  }
+  
+  .dark .bg-sidebar-village {
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 20, 14, 0.98) 0%,
+      rgba(42, 35, 27, 0.95) 20%,
+      rgba(28, 25, 23, 0.92) 100%
+    );
+  }
+  
+  /* Background spécial pour header */
+  .bg-header-village {
+    background: linear-gradient(
+      to right,
+      rgba(254, 250, 243, 0.95) 0%,
+      rgba(255, 247, 237, 0.9) 50%,
+      rgba(254, 250, 243, 0.95) 100%
+    );
+  }
+  
+  .dark .bg-header-village {
+    background: linear-gradient(
+      to right,
+      rgba(26, 20, 14, 0.95) 0%,
+      rgba(42, 35, 27, 0.9) 50%,
+      rgba(26, 20, 14, 0.95) 100%
+    );
+  }
+  
+  /* Animations */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-slideDown {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Animation pour le logo */
+  @keyframes gentleGlow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  
+  .gentle-glow {
+    animation: gentleGlow 4s ease-in-out infinite;
+  }
+  
+  /* Fix pour la hauteur et le scrolling */
+  .h-screen-dynamic {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  /* Empêcher les débordements */
+  .contain-layout {
+    contain: layout;
+  }
+  
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Styles pour le header/logo Bidjanté */
+.village-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.logo-bidjante {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+/* Amélioration des bordures */
+.border-village {
+  border-color: var(--border);
+  border-radius: 0.5rem;
+}
+
+/* Style pour les cartes */
+.card-village {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.05), 0 2px 4px -1px rgba(217, 119, 6, 0.03);
+}
+
+/* Style pour les inputs */
+.input-village {
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s;
+}
+
+.input-village:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+
+  /* Amélioration des contrastes pour SidePanel et Header */
+.sidebar-panel-enhanced {
+  background: linear-gradient(
+    to bottom,
+    rgba(254, 245, 231, 0.95) 0%,
+    rgba(254, 240, 220, 0.92) 20%,
+    rgba(253, 232, 200, 0.95) 100%
+  );
+  border-right: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.dark .sidebar-panel-enhanced {
+  background: linear-gradient(
+    to bottom,
+    rgba(42, 35, 27, 0.95) 0%,
+    rgba(36, 29, 21, 0.92) 20%,
+    rgba(32, 25, 17, 0.95) 100%
+  );
+  border-right: 1px solid rgba(180, 83, 9, 0.4);
+}
+
+.header-enhanced {
+  background: linear-gradient(
+    to right,
+    rgba(254, 245, 231, 0.98) 0%,
+    rgba(254, 240, 220, 0.95) 50%,
+    rgba(254, 245, 231, 0.98) 100%
+  );
+  backdrop-filter: blur(8px);
+}
+
+.dark .header-enhanced {
+  background: linear-gradient(
+    to right,
+    rgba(42, 35, 27, 0.98) 0%,
+    rgba(36, 29, 21, 0.95) 50%,
+    rgba(42, 35, 27, 0.98) 100%
+  );
+  backdrop-filter: blur(8px);
+}
+
+/* Dropdown amélioré avec plus de contraste */
+.dropdown-enhanced {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 250, 240, 0.98) 0%,
+    rgba(255, 245, 235, 0.98) 100%
+  );
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 
+    0 10px 30px rgba(217, 119, 6, 0.15),
+    0 2px 10px rgba(217, 119, 6, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .dropdown-enhanced {
+  background: linear-gradient(
+    to bottom,
+    rgba(45, 38, 30, 0.98) 0%,
+    rgba(40, 33, 25, 0.98) 100%
+  );
+  border: 1px solid rgba(180, 83, 9, 0.5);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 2px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Contraste amélioré pour les icônes et textes */
+.text-contrast {
+  color: #2c1810;
+}
+
+.dark .text-contrast {
+  color: #f8f5f0;
+}
+
+.icon-contrast {
+  color: #92400e;
+}
+
+.dark .icon-contrast {
+  color: #fbbf24;
+}
+
+/* Bordure visible pour SidePanel */
+.border-contrast {
+  border-color: rgba(217, 119, 6, 0.4);
+}
+
+.dark .border-contrast {
+  border-color: rgba(180, 83, 9, 0.5);
+}
+}
+
+/* Améliorations pour SidePanel blanc et meilleur contraste */
+
+/* SidePanel avec fond blanc propre */
+.sidepanel-white {
+  background: white;
+  border-right: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.dark .sidepanel-white {
+  background: #1a140e;
+  border-right: 1px solid rgba(180, 83, 9, 0.3);
+}
+
+/* Header avec fond blanc légèrement teinté */
+.header-white {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.15);
+}
+
+.dark .header-white {
+  background: rgba(26, 20, 14, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(180, 83, 9, 0.25);
+}
+
+/* Dropdown amélioré avec meilleur contraste */
+.dropdown-contrast {
+  background: white;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dark .dropdown-contrast {
+  background: #2a231b;
+  border: 1px solid rgba(180, 83, 9, 0.4);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Couleurs améliorées pour les icônes et textes */
+.text-primary-contrast {
+  color: #92400e; /* Marron foncé pour meilleure lisibilité */
+}
+
+.dark .text-primary-contrast {
+  color: #fbbf24; /* Jaune vif en mode sombre */
+}
+
+.icon-primary-contrast {
+  color: #b45309; /* Orange foncé */
+}
+
+.dark .icon-primary-contrast {
+  color: #f59e0b; /* Orange vif */
+}
+
+/* Boutons avec meilleur contraste */
+.btn-contrast {
+  background: #d97706;
+  color: white;
+}
+
+.btn-contrast:hover {
+  background: #b45309;
+}
+
+.dark .btn-contrast {
+  background: #f59e0b;
+  color: #1a140e;
+}
+
+.dark .btn-contrast:hover {
+  background: #d97706;
+}
+
+/* Bordure visible */
+.border-contrast {
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+.dark .border-contrast {
+  border-color: rgba(180, 83, 9, 0.4);
+}
+
+/* Correction pour l'affichage des titres dans les dropdowns */
+.dropdown-item-title {
+  color: #1f2937; /* gray-800 */
+  font-weight: 600;
+  font-size: 0.875rem; /* text-sm */
+}
+
+.dark .dropdown-item-title {
+  color: #f9fafb; /* gray-50 */
+}
+
+.dropdown-item-description {
+  color: #6b7280; /* gray-500 */
+  font-size: 0.75rem; /* text-xs */
+}
+
+.dark .dropdown-item-description {
+  color: #d1d5db; /* gray-300 */
+}
+
+/* Correction pour la visibilité des icônes dans SidebarDynamic */
+.sidebar-icon {
+  color: #4b5563; /* gray-600 */
+  transition: color 0.2s;
+}
+
+.dark .sidebar-icon {
+  color: #d1d5db; /* gray-300 */
+}
+
+.sidebar-icon:hover {
+  color: #d97706; /* primary color */
+}
+
+.dark .sidebar-icon:hover {
+  color: #f59e0b;
+}
+
+/* Assurer la visibilité du texte */
+.text-visible {
+  color: #111827 !important; /* gray-900 */
+}
+
+.dark .text-visible {
+  color: #f9fafb !important; /* gray-50 */
+}

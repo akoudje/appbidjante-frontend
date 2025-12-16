@@ -1,0 +1,17 @@
+/* src/styles/globals.css */
+@import "tailwindcss";
+
+/* Variables personnalisées */
+:root {
+  --sidebar-width: 256px;
+  --sidebar-width-collapsed: 80px;
+}
+
+/* Classes réutilisables */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-base {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-6;
+}

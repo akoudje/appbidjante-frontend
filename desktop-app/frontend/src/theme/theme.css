@@ -1,0 +1,46 @@
+/* src/theme/theme.css */
+:root {
+  /* Thème Village Bidjanté - Mode Clair */
+  --background: 40 30% 96%;         /* Beige très clair / sable */
+  --foreground: 25 30% 15%;         /* Brun foncé terreux */
+  --card: 0 0% 100%;                /* Blanc pur pour les cartes */
+  --card-foreground: 25 30% 15%;    /* Brun foncé */
+  --primary: 35 70% 50%;            /* Orange terre / terre cuite */
+  --primary-foreground: 0 0% 100%;  /* Blanc */
+  --secondary: 45 40% 90%;          /* Beige doré clair */
+  --secondary-foreground: 25 30% 15%; /* Brun foncé */
+  --muted: 40 30% 94%;              /* Beige très pâle */
+  --muted-foreground: 25 30% 40%;   /* Brun moyen */
+  --accent: 35 60% 92%;             /* Orange pâle */
+  --accent-foreground: 25 30% 15%;  /* Brun foncé */
+  --border: 40 20% 85%;             /* Beige grisâtre */
+  --input: 0 0% 100%;               /* Blanc */
+  --ring: 35 70% 50%;               /* Orange terre */
+  --success: 120 50% 45%;           /* Vert foncé */
+  --warning: 45 80% 55%;            /* Or / ambre */
+  --danger: 10 75% 55%;             /* Rouge terreux */
+  --info: 200 70% 55%;              /* Bleu ciel */
+}
+
+.dark {
+  /* Thème Village Bidjanté - Mode Sombre */
+  --background: 25 30% 10%;         /* Brun très foncé / nuit */
+  --foreground: 40 30% 92%;         /* Beige clair */
+  --card: 25 25% 15%;               /* Brun foncé */
+  --card-foreground: 40 30% 92%;    /* Beige clair */
+  --primary: 35 70% 55%;            /* Orange vif terreux */
+  --primary-foreground: 0 0% 100%;  /* Blanc */
+  --secondary: 30 25% 25%;          /* Brun moyen */
+  --secondary-foreground: 40 30% 92%; /* Beige clair */
+  --muted: 25 25% 20%;              /* Brun foncé */
+  --muted-foreground: 40 20% 70%;   /* Beige grisé */
+  --accent: 35 40% 30%;             /* Orange foncé */
+  --accent-foreground: 40 30% 92%;  /* Beige clair */
+  --border: 30 20% 30%;             /* Brun grisé */
+  --input: 25 25% 20%;              /* Brun foncé */
+  --ring: 35 70% 55%;               /* Orange terre */
+  --success: 120 50% 55%;           /* Vert vif */
+  --warning: 45 80% 60%;            /* Or brillant */
+  --danger: 10 75% 60%;             /* Rouge vif terreux */
+  --info: 200 70% 60%;              /* Bleu ciel vif */
+}
