@@ -12,14 +12,17 @@ const api = axios.create({
 
 // Inject token into headers
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("auth_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  const token = localStorage.getItem("token"); // ✅ CORRIGÉ
+  console.log("TOKEN SENT:", token);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
 // Token handlers
-export const apiSetToken = (t) => localStorage.setItem("auth_token", t);
-export const apiClearToken = () => localStorage.removeItem("auth_token");
+export const apiSetToken = (t) => localStorage.setItem("token", t);
+export const apiClearToken = () => localStorage.removeItem("token");
 
 // Helpers
 export const apiGet = (p) => api.get(p).then((res) => res.data);
@@ -28,4 +31,3 @@ export const apiPut = (p, b) => api.put(p, b).then((res) => res.data);
 export const apiDelete = (p) => api.delete(p).then((res) => res.data);
 
 export default api;
-

@@ -26,9 +26,10 @@ import Settings from "./pages/Settings";
 import UsersManagementPage from "./pages/UsersManagementPage";
 import MenuBuilder from "./pages/admin/MenuBuilder";
 import Configurations from "./pages/admin/Configurations";
+import Communiques from "./pages/Communiques";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
   // ✅ Pages publiques (sans MainLayout)
@@ -59,54 +60,14 @@ const router = createBrowserRouter([
           { path: "funerailles", element: <Funerailles /> },
           { path: "contributions", element: <Contributions /> },
           { path: "villagemembers", element: <VillageMembers /> },
-          
-
           { path: "profile", element: <ProfilePage /> },
 
-          {
-            path: "usersmanagements",
-            element: (
-              <RequireRole allowedRoles={["superadmin"]}>
-                <UsersManagementPage />
-              </RequireRole>
-            ),
-          },
-
-          {
-            path: "settings",
-            element: (
-              <RequireRole allowedRoles={["superadmin"]}>
-                <Settings />
-              </RequireRole>
-            ),
-          },
-
-          {
-            path: "admin/menu",
-            element: (
-              <RequireRole allowedRoles={["superadmin"]}>
-                <MenuBuilder />
-              </RequireRole>
-            ),
-          },
-
-          {
-            path: "admin/configurations",
-            element: (
-              <RequireRole allowedRoles={["superadmin"]}>
-                <Configurations />
-              </RequireRole>
-            ),
-          },
-
-          {
-            path: "register",
-            element: (
-              <RequireRole allowedRoles={["superadmin"]}>
-                <RegisterPage />
-              </RequireRole>
-            ),
-          },
+          { path: "usersmanagements", element: ( <RequireRole allowedRoles={["superadmin"]}> <UsersManagementPage /> </RequireRole>  ), },
+          { path: "settings", element: ( <RequireRole allowedRoles={["superadmin"]}>  <Settings />  </RequireRole>  ), },
+          { path: "admin/menu", element: ( <RequireRole allowedRoles={["superadmin"]}> <MenuBuilder /> </RequireRole> ), },
+          { path: "admin/configurations", element: ( <RequireRole allowedRoles={["superadmin"]}>  <Configurations /> </RequireRole>  ), },
+          { path: "register",  element: ( <RequireRole allowedRoles={["superadmin"]}>  <RegisterPage />  </RequireRole>  ), },
+          { path: "communiques", element: ( <RequireRole allowedRoles={["superadmin"]}> <Communiques /> </RequireRole> ), },
 
           { path: "*", element: <NotFoundPage /> },
         ],

@@ -1,9 +1,9 @@
-// Alternative encore plus light
+// src/components/DetailsPanel.jsx
 import { useEffect, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function DetailsPanelLight({
-  open,
+  open, 
   onClose,
   title,
   subtitle,
