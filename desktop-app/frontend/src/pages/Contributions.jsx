@@ -20,6 +20,8 @@ import Transactions from "./Transactions";
 import Soldes from "./Soldes";
 import Cotisations from "./Cotisations";
 import CotisationsLignees from "./CotisationsLignees";
+import { BanknotesIcon } from "@heroicons/react/24/solid";
+import Amendes from "./Amendes";
 
 const TABS_CONFIG = [
   {
@@ -66,6 +68,14 @@ const TABS_CONFIG = [
     color: "indigo",
     gradient: "from-indigo-500 to-indigo-600",
     description: "Aperçu des soldes par membre",
+  },
+  {
+    id: "amendes",
+    label: "Amendes",
+    icon: BanknotesIcon,
+    color: "red",
+    gradient: "from-red-500 to-indigo-600",
+    description: "Gestion des amendes",
   },
 ];
 
@@ -134,9 +144,9 @@ export default function Contributions() {
                 {!isActive && (
                   <div
                     className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 
-    bg-gray-900 text-white text-xs rounded-lg opacity-0 invisible 
-    group-hover:opacity-100 group-hover:visible transition-all duration-200 
-    whitespace-nowrap z-50 pointer-events-none"
+      bg-gray-900 text-white text-xs rounded-lg opacity-0 invisible 
+      group-hover:opacity-100 group-hover:visible transition-all duration-200 
+      whitespace-nowrap z-50 pointer-events-none"
                   >
                     {tab.description}
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 bg-gray-900"></div>
@@ -155,6 +165,7 @@ export default function Contributions() {
         {activeTab === "soldes" && <Soldes />}
         {activeTab === "cotisations" && <Cotisations />}
         {activeTab === "cotisationslignees" && <CotisationsLignees />}
+        {activeTab === "amendes" && <Amendes />}
       </div>
     </div>
   );

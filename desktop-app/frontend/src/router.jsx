@@ -29,6 +29,7 @@ import Configurations from "./pages/admin/Configurations";
 import Communiques from "./pages/Communiques";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterPage from "./pages/RegisterPage";
+import Amendes from "./pages/Amendes";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
           { path: "admin/configurations", element: ( <RequireRole allowedRoles={["superadmin"]}>  <Configurations /> </RequireRole>  ), },
           { path: "register",  element: ( <RequireRole allowedRoles={["superadmin"]}>  <RegisterPage />  </RequireRole>  ), },
           { path: "communiques", element: ( <RequireRole allowedRoles={["superadmin"]}> <Communiques /> </RequireRole> ), },
+          { path: "amendes", element: ( <RequireRole allowedRoles={["superadmin"]}> <Amendes /> </RequireRole> ), },
 
           { path: "*", element: <NotFoundPage /> },
         ],

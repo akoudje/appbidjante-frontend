@@ -7,7 +7,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 // Hook custom inline
 function useLockBodyScroll(lock) {
   React.useEffect(() => {
-    if (lock && window.innerWidth < 768) {
+    if (lock && window.innerWidth < 800) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";

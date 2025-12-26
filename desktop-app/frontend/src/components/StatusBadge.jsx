@@ -1,4 +1,4 @@
-// frontend/src/components/BulkActionsModal.jsx
+// src/components/BulkActionsModal.jsx
 import { 
   XMarkIcon, 
   UserGroupIcon,

@@ -1,3 +1,4 @@
+// src/utils/api.js
 import axios from "axios";
 
 const API_URL =
@@ -10,24 +11,28 @@ const api = axios.create({
   },
 });
 
-// Inject token into headers
+// 🔐 Inject JWT
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // ✅ CORRIGÉ
-  console.log("TOKEN SENT:", token);
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
-// Token handlers
+// Token helpers
 export const apiSetToken = (t) => localStorage.setItem("token", t);
 export const apiClearToken = () => localStorage.removeItem("token");
 
-// Helpers
+// Generic helpers
 export const apiGet = (p) => api.get(p).then((res) => res.data);
 export const apiPost = (p, b) => api.post(p, b).then((res) => res.data);
 export const apiPut = (p, b) => api.put(p, b).then((res) => res.data);
 export const apiDelete = (p) => api.delete(p).then((res) => res.data);
 
+// Communiqués
+export const apiPreviewCommunique = (id) =>
+  apiGet(`/communiques/${id}/preview`);
+
 export default api;
+

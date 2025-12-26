@@ -1,3 +1,5 @@
+// src/components/filters/FilterBar.jsx
+
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 

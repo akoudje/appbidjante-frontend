@@ -1,3 +1,4 @@
+// src/components/communiques/ConfirmDialog.jsx
 export default function ConfirmDialog({
   open,
   onClose,

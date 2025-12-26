@@ -16,12 +16,25 @@ const formatPhone = (value) => {
   const numbers = value.replace(/\D/g, "");
   if (numbers.length <= 2) return numbers;
   if (numbers.length <= 4) return `${numbers.slice(0, 2)} ${numbers.slice(2)}`;
-  if (numbers.length <= 6) return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(4)}`;
-  if (numbers.length <= 8) return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(4, 6)} ${numbers.slice(6)}`;
-  return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(4, 6)} ${numbers.slice(6, 8)} ${numbers.slice(8)}`;
+  if (numbers.length <= 6)
+    return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(4)}`;
+  if (numbers.length <= 8)
+    return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(
+      4,
+      6
+    )} ${numbers.slice(6)}`;
+  return `${numbers.slice(0, 2)} ${numbers.slice(2, 4)} ${numbers.slice(
+    4,
+    6
+  )} ${numbers.slice(6, 8)} ${numbers.slice(8)}`;
 };
 
-export default function MembreForm({ initial = null, onSubmit, onCancel }) {
+export default function MembreForm({
+  initial = null,
+  onSubmit,
+  onCancel,
+  hideActions = false,
+}) {
   const [form, setForm] = useState({
     nom: "",
     prenoms: "",
@@ -101,9 +114,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
   const handleChange = (e) => {
     setErrors({});
     const { name, value } = e.target;
-    
+
     // Formatage automatique pour les numéros de téléphone
-    if (name === 'contact1' || name === 'contact2') {
+    if (name === "contact1" || name === "contact2") {
       const formatted = formatPhone(value);
       setForm((f) => ({ ...f, [name]: formatted }));
     } else {
@@ -128,19 +141,25 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
     if (!form.prenoms.trim()) e.prenoms = "Prénoms requis";
     if (!form.grandeFamilleId) e.grandeFamilleId = "Choisir famille";
     if (!form.ligneeId) e.ligneeId = "Choisir lignée";
-    
+
     // Validation optionnelle pour l'email
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       e.email = "Email invalide";
     }
-    
+
     // Validation pour le contact principal
-    if (form.contact1 && !/^[0-9]{10}$/.test(form.contact1.replace(/\s/g, ""))) {
+    if (
+      form.contact1 &&
+      !/^[0-9]{10}$/.test(form.contact1.replace(/\s/g, ""))
+    ) {
       e.contact1 = "Numéro invalide (10 chiffres requis)";
     }
-    
+
     // Validation pour le contact secondaire
-    if (form.contact2 && !/^[0-9]{10}$/.test(form.contact2.replace(/\s/g, ""))) {
+    if (
+      form.contact2 &&
+      !/^[0-9]{10}$/.test(form.contact2.replace(/\s/g, ""))
+    ) {
       e.contact2 = "Numéro invalide (10 chiffres requis)";
     }
 
@@ -200,7 +219,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
         <div className="grid grid-cols-2 gap-4">
           {/* Nom */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Nom *
+            </label>
             <input
               name="nom"
               value={form.nom}
@@ -208,12 +229,16 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
               className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Entrez le nom"
             />
-            {errors.nom && <p className="text-xs text-red-600 mt-1">{errors.nom}</p>}
+            {errors.nom && (
+              <p className="text-xs text-red-600 mt-1">{errors.nom}</p>
+            )}
           </div>
 
           {/* Prénoms */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Prénoms *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Prénoms *
+            </label>
             <input
               name="prenoms"
               value={form.prenoms}
@@ -230,7 +255,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
         <div className="flex gap-4">
           {/* Genre */}
           <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Genre</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Genre
+            </label>
             <select
               name="genre"
               value={form.genre}
@@ -244,7 +271,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
           {/* Date de naissance */}
           <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Date de naissance
+            </label>
             <input
               type="date"
               name="dateNaissance"
@@ -262,7 +291,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
         {/* Famille */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Grande Famille *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Grande Famille *
+          </label>
           <select
             name="grandeFamilleId"
             value={form.grandeFamilleId}
@@ -277,13 +308,17 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
             ))}
           </select>
           {errors.grandeFamilleId && (
-            <p className="text-xs text-red-600 mt-1">{errors.grandeFamilleId}</p>
+            <p className="text-xs text-red-600 mt-1">
+              {errors.grandeFamilleId}
+            </p>
           )}
         </div>
 
         {/* Lignée */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Lignée *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Lignée *
+          </label>
           <select
             name="ligneeId"
             value={form.ligneeId}
@@ -298,7 +333,11 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
               </option>
             ))}
           </select>
-          {loadingLignees && <p className="text-xs text-gray-500 mt-1">Chargement des lignées...</p>}
+          {loadingLignees && (
+            <p className="text-xs text-gray-500 mt-1">
+              Chargement des lignées...
+            </p>
+          )}
           {errors.ligneeId && (
             <p className="text-xs text-red-600 mt-1">{errors.ligneeId}</p>
           )}
@@ -306,7 +345,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
         {/* Catégorie */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Catégorie
+          </label>
           <select
             name="categorieId"
             value={form.categorieId}
@@ -329,7 +370,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Email
+          </label>
           <input
             type="email"
             name="email"
@@ -345,7 +388,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
         {/* Contact 1 */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Contact principal (WhatsApp)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Contact principal (WhatsApp)
+          </label>
           <input
             type="tel"
             name="contact1"
@@ -361,7 +406,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
 
         {/* Contact 2 */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Contact secondaire</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Contact secondaire
+          </label>
           <input
             type="tel"
             name="contact2"
@@ -381,7 +428,9 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
         <h3 className="font-semibold text-gray-700">Statut</h3>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Statut du membre</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Statut du membre
+          </label>
           <select
             name="statutMembre"
             value={form.statutMembre}
@@ -408,7 +457,7 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
               alt="Photo du membre"
             />
           )}
-          
+
           <div>
             <label className="cursor-pointer bg-blue-100 hover:bg-blue-200 text-blue-700 px-4 py-2 rounded border border-blue-300 inline-block transition-colors">
               {preview ? "Changer l'image" : "Choisir une image"}
@@ -419,27 +468,31 @@ export default function MembreForm({ initial = null, onSubmit, onCancel }) {
                 className="hidden"
               />
             </label>
-            <p className="text-xs text-gray-500 mt-2">Formats acceptés: JPG, PNG</p>
+            <p className="text-xs text-gray-500 mt-2">
+              Formats acceptés: JPG, PNG
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ACTIONS */}
-      <div className="flex justify-end gap-3 pt-4 border-t">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-6 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 transition-colors"
-        >
-          Annuler
-        </button>
-        <button
-          type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          {initial ? "Mettre à jour" : "Créer le membre"}
-        </button>
-      </div>
+      {/* ACTIONS - conditionnelles */}
+      {!hideActions && (
+        <div className="flex justify-end gap-3 pt-4 border-t">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="px-6 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 transition-colors"
+          >
+            Annuler
+          </button>
+          <button
+            type="submit"
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            {initial ? "Mettre à jour" : "Créer le membre"}
+          </button>
+        </div>
+      )}
     </form>
   );
 }

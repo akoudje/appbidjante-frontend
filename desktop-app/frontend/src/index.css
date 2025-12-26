@@ -748,3 +748,109 @@ input[type="text"], input[type="password"] {
 .dark .text-visible {
   color: #f9fafb !important; /* gray-50 */
 }
+
+/* Dans votre CSS global */
+.force-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.table-header-fixed {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.text-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Pour s'assurer que le texte est toujours visible */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Styles pour les boutons d'action améliorés */
+.btn-icon-action {
+  @apply p-1.5 rounded transition-colors duration-150;
+}
+
+.btn-icon-action:hover {
+  @apply scale-105;
+}
+
+/* Couleurs sémantiques pour chaque action */
+.action-view { @apply hover:bg-blue-50 text-blue-600; }
+.action-duplicate { @apply hover:bg-green-50 text-green-600; }
+.action-edit { @apply hover:bg-indigo-50 text-indigo-600; }
+.action-publish { @apply hover:bg-emerald-50 text-emerald-600; }
+.action-delete { @apply hover:bg-red-50 text-red-600; }
+.action-archive { @apply hover:bg-orange-50 text-orange-600; }
+.action-restore { @apply hover:bg-gray-100 text-gray-600; }
+
+
+/* Animation pour le dashboard */
+.dashboard-slide {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects pour les cartes du dashboard */
+.dashboard-card {
+  transition: all 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats counters animation */
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

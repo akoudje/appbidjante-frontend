@@ -1,9 +1,10 @@
 // src/components/DetailsPanel.jsx
+
 import { useEffect, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-export default function DetailsPanelLight({
-  open, 
+export default function DetailsPanel({
+  open,
   onClose,
   title,
   subtitle,
@@ -67,20 +68,18 @@ export default function DetailsPanelLight({
           maxWidth: width || "600px",
         }}
       >
-        {/* HEADER simple */}
+        {/* HEADER */}
         <div className="relative px-5 py-4 border-b border-gray-300 bg-gray-50 sticky top-0 z-10">
           <div className="pr-10">
             {title && (
-              <h2 className="text-lg font-semibold text-gray-900">
-                {title}
-              </h2>
+              <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
             )}
             {subtitle && (
               <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
             )}
           </div>
 
-          {/* Bouton fermer simple */}
+          {/* Bouton fermer */}
           <button
             onClick={handleClose}
             className="absolute top-4 right-4 p-1.5 rounded hover:bg-gray-200 transition-colors"
@@ -92,12 +91,10 @@ export default function DetailsPanelLight({
 
         {/* CONTENT */}
         <div className="flex-1 overflow-y-auto px-5 py-4 bg-white text-gray-800">
-          <div className="space-y-4">
-            {children}
-          </div>
+          <div className="space-y-4">{children}</div>
         </div>
 
-        {/* FOOTER simple */}
+        {/* FOOTER */}
         {actions && (
           <div className="px-5 py-3 border-t border-gray-300 bg-gray-50 flex gap-2">
             {actions}

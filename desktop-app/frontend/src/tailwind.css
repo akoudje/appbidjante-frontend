@@ -96,4 +96,27 @@
   .animate-slideUp {
     animation: slideUp 0.3s ease-out;
   }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        .modal-enter {
+          animation: fadeIn 0.2s ease-out, slideUp 0.3s ease-out;
+        }
+
+
+  
 }

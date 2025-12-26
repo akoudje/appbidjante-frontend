@@ -1495,30 +1495,7 @@ cell: (info) => {
         }}
         title={editing ? "Modifier le membre" : "Nouveau membre"}
         width="max-w-2xl"
-        footer={
-          <div className="flex gap-2 justify-end">
-            <button
-              onClick={() => {
-                setOpenModal(false);
-                setEditing(null);
-              }}
-              className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg font-medium"
-            >
-              Annuler
-            </button>
-            <button
-              onClick={() => {
-                if (form) {
-                  const formData = new FormData(form);
-                  const data = Object.fromEntries(formData.entries());
-                  handleSave(data);
-                }
-              }}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium"
-            >
-              {editing ? "Mettre à jour" : "Enregistrer"}
-            </button>
-          </div>
+        footer={null
         }
       >
         <MembreForm
